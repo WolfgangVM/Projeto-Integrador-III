@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+main {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#busca {
+    margin-bottom: 20px;
+}
+
+#busca input[type="text"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+#btnBuscar {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#resultados ul {
+    list-style: none;
+    padding: 0;
+}
+
+#resultados li {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+}
