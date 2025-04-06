@@ -1,27 +1,22 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask import Flask                     # Importando Flask
+from flask_sqlalchemy import SQLAlchemy     # Importando SQLAlchemy
+from flask_bcrypt import Bcrypt             # Importando Bcrypt para hash de senhas
+from flask_login import LoginManager        # Importando LoginManager para gerenciar sessões de login
 
-#usado para banco de dados, se não usar deixar comentado
-#flask sqlalchemy
 
-#usado para formularios, se não usar deixar comentado
-#flask wtf forms
-
-app = Flask(__name__)
+app = Flask(__name__)                      
 
 # Configurações
-app.config['SECRET_KEY'] = 'sua_chave_secreta_aqui'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SECRET_KEY'] = 'sua_chave_secreta_aqui'             # Chave secreta para proteger sessões
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'     # URI do banco de dados SQLite
 
 # Inicializações
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+db = SQLAlchemy(app)                                            # Inicializa o banco de dados
+bcrypt = Bcrypt(app)                                            # Inicializa o Bcrypt para hash de senhas
+login_manager = LoginManager(app)                               # Inicializa o LoginManager
+login_manager.login_view = 'login'                              # Define a rota de login para redirecionamento
 
-from views import *
+from views import *                 # Importando as rotas do arquivo views.py
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == "__main__":          # Verificando se o script está sendo executado diretamente      
+    app.run(debug=True)             # Iniciando o servidor Flask em modo de depuração   
