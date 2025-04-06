@@ -1,46 +1,293 @@
-body {
-    font-family: sans-serif;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-    width: 80%;
-    margin: 20px auto;
+    flex: 1;
+    background-image: url("/static/css/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    color: white;
 }
 
-#busca {
+.topo {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.menu-wrapper{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    font-size: large;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.search-wrapper {
+    flex-shrink: 0;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+
+.search-button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #e0e0e0;
+}
+
+.destaque {
+    background-image: url("/static/css/background.jpg");
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.destaque h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.destaque p {
+    font-size: 1.2rem;
     margin-bottom: 20px;
 }
 
-#busca input[type="text"] {
-    padding: 8px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
+.botao {
+    background-color: #ffffff;
+    color: #0071c2;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
 
-#btnBuscar {
-    padding: 8px 15px;
-    background-color: #4CAF50;
+.botao:hover {
+    background-color: #e6e6e6;
+}
+
+.rodape {
+    max-height: 80px;
+    gap: 20px;
+    background-color: rgb(85, 84, 84);
+    color: #ccc;
+    padding: 10px 10px 10px;
+    font-size: 0.9rem;
+}
+
+.rodape-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.coluna h4 {
     color: #fff;
-    border: none;
-    cursor: pointer;
+    margin-bottom: 10px;
 }
 
-#resultados ul {
+.coluna ul {
     list-style: none;
     padding: 0;
 }
 
-#resultados li {
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    padding: 10px;
+.coluna ul li {
+    margin-bottom: 8px;
 }
+
+.coluna ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.coluna ul li a:hover {
+    color: #fff;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo {
+        height: 60px;
+    }
+    .search-form {
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .rodape-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .rodape p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .topo {
+        padding: 10px 5px;
+    }
+    .menu {
+        font-size: medium;
+        gap: 15px;
+    }
+    .destaque h1 {
+        font-size: 2rem;
+    }
+    .destaque p {
+        font-size: 1rem;
+    }
+    .rodape {
+        padding: 10px;
+    }
+    .search-form {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .logo {
+      height: 60px;
+      margin-bottom: 10px;
+    }
+  
+    .menu-wrapper {
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .menu {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .search-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .search-form {
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .search-input,
+    .search-button {
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .menu {
+      font-size: medium;
+    }
+  
+    .search-form {
+      max-width: 100%;
+    }
+  
+    .destaque h1 {
+      font-size: 2rem;
+    }
+  
+    .destaque p {
+      font-size: 1rem;
+    }
+  
+    .rodape {
+      padding: 10px;
+    }
+  
+    .rodape-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .rodape p {
+      text-align: center;
+    }
+  }
+  
