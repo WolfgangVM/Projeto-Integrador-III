@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Biblioteca Virtual</title>
-  <link rel="stylesheet" href="\static\css\estilo.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css')}}">
 </head>
 <body>
   <div class="container">
@@ -18,7 +18,7 @@
       <div class="login-box">
         <h2>Login</h2>
         <p>Identifique-se para prosseguir</p>
-        <label for="email">E-mail, documento ou código de acesso</label>
+        <label for="email">Digite seu e-mail</label>
         <input type="email" id="email" placeholder="Digite seu e-mail">
         
         <label for="senha">Senha</label>
@@ -30,13 +30,13 @@
         </div>
 
         <div class="actions">
-          <a href="#">Esqueci minha Senha</a>
+          <a href="EsqueciSenha.html">Esqueci minha Senha</a>
         </div>
 
         <button class="btn-login">Acessar</button>
 
         <div class="footer">
-          Acesse nossa <a href="#">Central de Ajuda</a>
+          <a href="CadastroUsuario.html">Ainda não sou cadastrado</a>
         </div>
       </div>
     </div>
