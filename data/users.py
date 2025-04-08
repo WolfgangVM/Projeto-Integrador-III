@@ -1,5 +1,9 @@
 from main import db, login_manager
 from flask_login import UserMixin
+from flask import Blueprint
+
+
+users_bp = Blueprint("users", __name__)
 
 @login_manager.user_loader
 def load_user(user_id):
