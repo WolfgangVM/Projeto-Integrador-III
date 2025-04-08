@@ -1,7 +1,6 @@
-from main import db, login_manager
+from extensions import db, login_manager
 from flask_login import UserMixin
 from flask import Blueprint
-
 
 users_bp = Blueprint("users", __name__)
 
