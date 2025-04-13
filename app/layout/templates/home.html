@@ -1,0 +1,57 @@
+!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca Virtual</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+  <header class="topo">
+    <div class="container">
+      <div class="menu-wrapper">
+        <ul class="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Categorias</a></li>
+          <li><a href="#">Minha Estante</a></li>
+          <li><a href="#">Ajuda</a></li>
+        </ul>
+      </div>
+  
+      <div class="search-wrapper">
+        <form class="search-form">
+          <input type="text" placeholder="Buscar livro" class="search-input">
+          <button type="submit" class="search-button">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </header>
+  
+  <main class="destaque">
+    <div class="container">
+      <h1>Bem-vindo à Biblioteca Virtual</h1>
+    </div>
+  </main>
+  <footer class="rodape">
+    <div class="container rodape-container">
+      <div class="coluna">
+        <ul>
+          <li><a href="#">Sobre a Biblioteca Virtual</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+        </ul>
+      </div>
+      <div class="coluna">
+        <ul>
+          <li><a href="#">Central de Ajuda</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <p>&copy; 2025 Biblioteca Virtual. Todos os direitos reservados.</p>
+      <p>&copy; <span id="currentYear"></span> Biblioteca Virtual. Todos os direitos reservados.</p>
+      <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+      </script>
+  </footer>
+</body>
+</html>

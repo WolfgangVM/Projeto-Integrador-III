@@ -16,22 +16,22 @@ def signup():
         password = request.form.get("password")
         confirm_password = request.form.get("confirm_password")
 
-        # Verificar se as senhas coincidem
         if password != confirm_password:
             flash("As senhas não coincidem. Tente novamente.", "danger")
             return redirect(url_for("signup.signup"))
 
-        # Verificar se o usuário já existe
+        if len(password) < 6 or not any(c.isupper() for c in password) or not any(c in "!@#$%^&*" for c in password):
+            flash("A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um caractere especial.", "danger")
+            return redirect(url_for("signup.signup"))
+
         if User.query.filter_by(username=username).first():
             flash("Nome de usuário já existe. Tente outro.", "danger")
             return redirect(url_for("signup.signup"))
 
-        # Verificar se o e-mail já está cadastrado
         if User.query.filter_by(email=email).first():
             flash("E-mail já cadastrado. Tente outro.", "danger")
             return redirect(url_for("signup.signup"))
 
-        # Criar o novo usuário
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         user = User(username=username, email=email, password=hashed_password)
         db.session.add(user)

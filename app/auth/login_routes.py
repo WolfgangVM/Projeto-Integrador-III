@@ -1,25 +1,21 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user, login_required
-from extensions import db, bcrypt
+from flask_login import login_user, logout_user, login_required, current_user
+from extensions import db, bcrypt, login_manager
 from data.users import User
-from flask import current_app
-from flask_login import LoginManager
 
 login_bp = Blueprint('login', __name__)
-login_manager = LoginManager()
-
 
 @login_bp.route("/")
 @login_required
 def homepage():
-    return render_template("homepage.html")  
+    return render_template("home.html")  
 
 @login_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(email=username).first()
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             flash("Login realizado com sucesso!", "success")
@@ -33,4 +29,4 @@ def login():
 def logout():
     logout_user()
     flash("Você saiu da sua conta.", "info")
-    return redirect(url_for("login.login"))  
+    return redirect(url_for("login.login"))
