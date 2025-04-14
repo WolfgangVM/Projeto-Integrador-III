@@ -3,7 +3,7 @@ from extensions import db, bcrypt, login_manager, mail
 from app.auth.login_routes import login_bp
 from app.auth.signup_routes import signup_bp
 from app.auth.forgot_password_routes import forgot_password_bp
-from app.system.system_routes import system_bp
+from app.system.home_routes import home_bp
 from data.users import users_bp
 from data.users import User
 import os
@@ -31,7 +31,7 @@ app.config['MAIL_PASSWORD'] = 'sua_senha'
 db.init_app(app)
 bcrypt.init_app(app)
 login_manager.init_app(app)
-login_manager.login_view = 'login.login'
+login_manager.login_view = 'login.loginpage'
 login_manager.login_message = 'Por favor, faça login para acessar essa página.'
 login_manager.login_message_category = 'info'
 mail.init_app(app)
@@ -40,7 +40,7 @@ mail.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-app.register_blueprint(system_bp)
+app.register_blueprint(home_bp)
 app.register_blueprint(forgot_password_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(signup_bp)
@@ -53,4 +53,3 @@ with app.app_context():
 
 if __name__ == "__main__":
     app.run(debug=True)
-

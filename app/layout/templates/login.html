@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Biblioteca Virtual</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link rel="stylesheet" href="../static/css/estilo2.css">
 </head>
 <body>
     <div class="container">
         <div class="left">
             <div class="logo-circular-container">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Biblioteca Virtual">
+                <img src="../static/img/logo.png" alt="Biblioteca Virtual">
             </div>
             <h1>Bem-vindo à<br>Biblioteca Virtual!</h1>
         </div>
@@ -18,7 +18,7 @@
             <div class="login-box">
                 <h2>Login</h2>
                 <p>Identifique-se para prosseguir</p>
-                <form method="POST" action="{{ url_for('login.login') }}">
+                <form method="POST" action="{{ url_for('login.loginvalidate') }}">
                     <label for="email">Digite seu e-mail</label>
                     <input type="email" id="username" name="username" placeholder="Digite seu nome de usuário" required>
                     
