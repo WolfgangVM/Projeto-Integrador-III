@@ -18,7 +18,7 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
         'check_same_thread': False
     }
 }
-app.config['LOGIN_VIEW'] = 'login.login'
+app.config['LOGIN_VIEW'] = 'login.loginpage'
 app.config['LOGIN_MESSAGE'] = 'Por favor, faça login para acessar essa página.' 
 app.config['LOGIN_MESSAGE_CATEGORY'] = 'info'   
 app.config['WTF_CSRF_ENABLED'] = True
