@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biblioteca Virtual</title>
+  <title>Categorias</title>
   <link rel="stylesheet" href="../static/css/estilo.css" />
 </head>
 <body>
@@ -19,27 +19,32 @@
           <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
         </ul>
       </div>
-  
+
       <div class="search-wrapper">
         <form class="search-form">
           <input type="text" placeholder="Buscar livro" class="search-input">
           <button type="submit" class="search-button">Buscar</button>
-          <a href="perfil.html" class="perfil-link" title="Meu Perfil">
-            <img src="../static/img/usuario.svg" alt="Ícone de Perfil" class="icone-perfil">
-          </a>
         </form>
-        <div class="perfil-wrapper">
-          
-        </div>
       </div>
     </div>
   </header>
-  
-  <main class="destaque">
+
+  <main class="conteudo-principal">
     <div class="container">
-      <h1>Bem-vindo à Biblioteca Virtual</h1>
+      <h1 class="titulo-categorias">Categorias</h1>
+      <div class="grid-categorias">
+        <div class="cartao">Ficção</div>
+        <div class="cartao">Romance</div>
+        <div class="cartao">Suspense</div>
+        <div class="cartao">História</div>
+        <div class="cartao">Ciência</div>
+        <div class="cartao">Tecnologia</div>
+        <div class="cartao">Biografias</div>
+        <div class="cartao">Autoajuda</div>
+      </div>
     </div>
   </main>
+
   <footer class="rodape">
     <div class="container rodape-container">
       <div class="coluna">

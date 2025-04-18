@@ -39,7 +39,7 @@
   }
   
   .right {
-    background-color:rgb(200, 210, 220) ;
+    background-color:rgb(200, 210, 220);
     width: 50%;
     display: flex;
     justify-content: center;

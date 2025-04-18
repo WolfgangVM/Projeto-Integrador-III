@@ -32,3 +32,8 @@ def help_page():
 @login_required
 def contact_page():
     return render_template("contact.html")
+
+@home_bp.route("/categories")
+@login_required
+def categories():
+    return render_template("categories.html")
