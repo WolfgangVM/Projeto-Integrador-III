@@ -21,16 +21,10 @@
       </div>
   
       <div class="search-wrapper">
-        <form class="search-form">
-          <input type="text" placeholder="Buscar livro" class="search-input">
-          <button type="submit" class="search-button">Buscar</button>
-          <a href="perfil.html" class="perfil-link" title="Meu Perfil">
-            <img src="../static/img/usuario.svg" alt="Ícone de Perfil" class="icone-perfil">
-          </a>
+        <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
+            <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+            <button type="submit" class="search-button">Buscar</button>
         </form>
-        <div class="perfil-wrapper">
-          
-        </div>
       </div>
     </div>
   </header>

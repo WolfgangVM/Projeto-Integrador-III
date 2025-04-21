@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categorias</title>
+  <title>Buscar Livros - Biblioteca Virtual</title>
   <link rel="stylesheet" href="../static/css/estilo.css" />
 </head>
 <body>
@@ -19,32 +19,23 @@
           <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
         </ul>
       </div>
-
-      <div class="search-wrapper">
-        <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
-            <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
-            <button type="submit" class="search-button">Buscar</button>
-        </form>
-      </div>
+  
+        <div class="search-wrapper">
+            <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
+                <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+                <button type="submit" class="search-button">Buscar</button>
+            </form>
+        </div>
     </div>
   </header>
-
-  <main class="conteudo-principal">
+  
+  <main class="destaque">
     <div class="container">
-      <h1 class="titulo-categorias">Categorias</h1>
-      <div class="grid-categorias">
-        <div class="cartao">Ficção</div>
-        <div class="cartao">Romance</div>
-        <div class="cartao">Suspense</div>
-        <div class="cartao">História</div>
-        <div class="cartao">Ciência</div>
-        <div class="cartao">Tecnologia</div>
-        <div class="cartao">Biografias</div>
-        <div class="cartao">Autoajuda</div>
-      </div>
+      <h1>Buscar Livros</h1>
+      <p>Digite o nome do livro que deseja buscar na Biblioteca Virtual.</p>
     </div>
   </main>
-
+  
   <footer class="rodape">
     <div class="container rodape-container">
       <div class="coluna">

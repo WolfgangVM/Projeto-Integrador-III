@@ -22,10 +22,9 @@
       </nav>
 
       <div class="search-wrapper">
-        <form class="search-form">
-          <input type="text" placeholder="Buscar livro" class="search-input">
-          <button type="submit" class="search-button">Buscar</button>
-          
+        <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
+            <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+            <button type="submit" class="search-button">Buscar</button>
         </form>
       </div>
     </div>
