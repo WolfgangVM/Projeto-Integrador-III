@@ -3,78 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biblioteca Virtual</title>
-<<<<<<< HEAD
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css')}}" />
-=======
+  <title>Ajuda - Biblioteca Virtual</title>
   <link rel="stylesheet" href="../static/css/estilo.css" />
->>>>>>> feature/loginbackend
 </head>
 <body>
+  <!-- Cabeçalho -->
   <header class="topo">
     <div class="container">
       <img src="../static/img/logo.png" alt="Logo Biblioteca Virtual" class="logo">
       
-      <div class="menu-wrapper">
+      <nav class="menu-wrapper">
         <ul class="menu">
-<<<<<<< HEAD
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Categorias</a></li>
-          <li><a href="#">Minha Estante</a></li>
-          <li><a href="#">Ajuda</a></li>
-=======
           <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
           <li><a href="{{ url_for('home.categories') }}">Categorias</a></li>
           <li><a href="estante.html">Minha Estante</a></li>
           <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
->>>>>>> feature/loginbackend
         </ul>
-      </div>
-  
+      </nav>
+
       <div class="search-wrapper">
-<<<<<<< HEAD
-        <form class="search-form">
-          <input type="text" placeholder="Buscar livro" class="search-input">
-          <button type="submit" class="search-button">Buscar</button>
-=======
         <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
             <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
             <button type="submit" class="search-button">Buscar</button>
->>>>>>> feature/loginbackend
         </form>
       </div>
     </div>
   </header>
-  
-  <main class="destaque">
+
+  <!-- Conteúdo Principal -->
+  <main class="conteudo-principal ajuda-container">
     <div class="container">
-      <h1>Bem-vindo à Biblioteca Virtual</h1>
+      <h1 class="titulo-ajuda">Central de Ajuda</h1>
+
+      <!-- Seção de Perguntas Frequentes -->
+      <section class="faq">
+        <h2 class="faq-titulo">Perguntas Frequentes</h2>
+        <div class="faq-item">
+          <h3>Como faço para baixar um livro?</h3>
+          <p>Para baixar um livro, navegue até a categoria desejada, selecione o livro e clique no botão "Baixar".</p>
+        </div>
+        <div class="faq-item">
+          <h3>Onde encontro os livros que baixei?</h3>
+          <p>Os livros baixados ficam disponíveis na seção "Minha Estante", acessível pelo menu superior.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Como posso entrar em contato com o suporte?</h3>
+          <p>Utilize o formulário abaixo para enviar sua dúvida ou solicitação.</p>
+        </div>
+      </section>
+
+      <!-- Formulário de Contato -->
+      <section class="contato">
+        <h2 class="contato-titulo">Fale Conosco</h2>
+        <form action="/enviar-mensagem" method="post" class="form-contato">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required>
+
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="mensagem">Mensagem:</label>
+          <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+          <button type="submit" class="botao-enviar">Enviar</button>
+        </form>
+      </section>
     </div>
   </main>
+
+  <!-- Rodapé -->
   <footer class="rodape">
     <div class="container rodape-container">
       <div class="coluna">
         <ul>
-<<<<<<< HEAD
-          <li><a href="#">Sobre a Biblioteca Virtual</a></li>
-          <li><a href="#">Política de Privacidade</a></li>
-          <li><a href="#">Termos de Uso</a></li>
-=======
           <li><a href="{{ url_for('home.about') }}">Sobre a Biblioteca Virtual</a></li>
           <li><a href="{{ url_for('home.privacy_policy') }}">Política de Privacidade</a></li>
           <li><a href="{{ url_for('home.terms_use') }}">Termos de Uso</a></li>
->>>>>>> feature/loginbackend
         </ul>
       </div>
       <div class="coluna">
         <ul>
-<<<<<<< HEAD
-          <li><a href="#">Central de Ajuda</a></li>
-          <li><a href="#">Fale Conosco</a></li>
-=======
           <li><a href="{{ url_for('home.help_page') }}">Central de Ajuda</a></li>
           <li><a href="{{ url_for('home.contact_page') }}">Fale Conosco</a></li>
->>>>>>> feature/loginbackend
         </ul>
       </div>
       <p>&copy; 2025 Biblioteca Virtual. Todos os direitos reservados.</p>

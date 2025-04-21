@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="../static/css/estilo.css">
+</head>
+<body>
+    <header>
+        <!-- Include navigation or header content -->
+    </header>
+    <main>
+        <h1>Search Results for "{{ query }}"</h1>
+        
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
+            <ul>
+                {% for book in books %}
+                    <li>
+                        <strong>{{ book.title }}</strong><br>
+                        <em>Authors:</em> {{ book.authors }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </main>
+    <footer>
+        <!-- Include footer content -->
+    </footer>
+</body>
+</html>

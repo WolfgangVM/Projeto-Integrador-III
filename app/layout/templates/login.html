@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Biblioteca Virtual</title>
@@ -43,5 +44,49 @@
           </div>
     </div>
   </div>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Biblioteca Virtual</title>
+    <link rel="stylesheet" href="../static/css/estilo2.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="logo-circular-container">
+                <img src="../static/img/logo.png" alt="Biblioteca Virtual">
+            </div>
+            <h1>Bem-vindo à<br>Biblioteca Virtual!</h1>
+        </div>
+        <div class="right">
+            <div class="login-box">
+                <h2>Login</h2>
+                <p>Identifique-se para prosseguir</p>
+                <form method="POST" action="/loginvalidate">
+                    <label for="email">Digite seu e-mail</label>
+                    <input type="email" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+                    
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                    
+                    <div class="actions">
+                        <a href="{{ url_for('forgot_password.forgot_password') }}">Esqueci minha Senha</a>  
+                    </div>
+
+                    <div class="remember">
+                        <input type="checkbox" id="lembrar">
+                        <label for="lembrar">Lembre de mim</label>
+                      </div>
+                      
+                    <button class="btn-login" type="submit">Acessar</button>
+                    
+                <div class="footer">
+                    <a href="{{ url_for('signup.signup') }}">Ainda não sou cadastrado</a>
+                </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+>>>>>>> feature/loginbackend
 </body>
 </html>

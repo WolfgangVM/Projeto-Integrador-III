@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termos de Uso - Biblioteca Virtual</title>
+  <link rel="stylesheet" href="../static/css/estilo.css" />
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header class="topo">
+    <div class="container">
+      <img src="../static/img/logo.png" alt="Logo Biblioteca Virtual" class="logo">
+      
+      <nav class="menu-wrapper">
+        <ul class="menu">
+          <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+          <li><a href="{{ url_for('home.categories') }}">Categorias</a></li>
+          <li><a href="estante.html">Minha Estante</a></li>
+          <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-wrapper">
+        <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
+            <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="conteudo-principal">
+    <div class="container">
+      <h1 class="sobre" style="color: rgb(104, 103, 103);">Termos de Uso</h1>
+
+      <!-- Seção de Perguntas Frequentes -->
+      <section class="sobre">
+        
+            <h3>Bem-vindo à Biblioteca Virtual!<br><br> Ao acessar e utilizar nossos serviços, você concorda com os seguintes Termos de Uso. Recomendamos que leia com atenção antes de navegar pelo site ou utilizar qualquer funcionalidade da plataforma.<br><br>
+
+                1. Aceitação dos Termos<br>
+                Ao acessar a Biblioteca Virtual, o usuário declara ter lido, compreendido e aceitado integralmente estes Termos de Uso, bem como a nossa Política de Privacidade.<br><br>
+                
+                2. Uso da Plataforma<br>
+                O usuário compromete-se a:<br>
+                
+                Utilizar a plataforma de forma ética, legal e respeitosa;
+                
+                Não divulgar conteúdo ilegal, ofensivo, discriminatório ou que infrinja direitos de terceiros;
+                
+                Manter a confidencialidade de suas credenciais de acesso (usuário e senha);
+                
+                Não tentar invadir, modificar ou danificar sistemas da Biblioteca Virtual ou de outros usuários.<br><br>
+                
+                3. Cadastro do Usuário<br>
+                Alguns serviços exigem cadastro. Ao se registrar, o usuário se compromete a fornecer informações verdadeiras, completas e atualizadas. A Biblioteca Virtual se reserva o direito de suspender ou cancelar contas que contenham informações falsas ou que violem estes Termos.<br><br>
+                
+                4. Conteúdo Disponível<br>
+                A Biblioteca Virtual oferece acesso a livros, artigos, documentos e outros conteúdos digitais. Todos os materiais disponibilizados são protegidos por direitos autorais e destinados exclusivamente para uso pessoal e não comercial dos usuários.<br>
+                
+                É proibida a reprodução, distribuição ou modificação de qualquer conteúdo sem a autorização expressa dos detentores dos direitos.<br><br>
+                
+                5. Responsabilidades do Usuário<br>
+                O usuário é o único responsável pelo uso que faz da plataforma. A Biblioteca Virtual não se responsabiliza por danos causados por mau uso, compartilhamento de senhas ou violação dos termos aqui estabelecidos.<br><br>
+                
+                6. Modificações nos Termos<br>
+                A Biblioteca Virtual poderá atualizar estes Termos de Uso a qualquer momento, sem aviso prévio. As alterações entram em vigor assim que publicadas nesta página. Recomendamos que os usuários consultem periodicamente os Termos.<br><br>
+                
+                7. Encerramento do Acesso<br>
+                Reservamo-nos o direito de suspender ou encerrar, a qualquer momento, o acesso de usuários que violem estes Termos ou que façam uso indevido da plataforma.<br><br>
+                
+                8. Contato<br>
+                Em caso de dúvidas, sugestões ou solicitações relacionadas a estes Termos de Uso, entre em contato conosco pelo e-mail:
+                📧 contato@bibliotecavirtual.com
+                
+                </h3>
+            
+            
+        
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="rodape">
+    <div class="container rodape-container">
+        <div class="coluna">
+            <ul>
+              <li><a href="{{ url_for('home.about') }}">Sobre a Biblioteca Virtual</a></li>
+              <li><a href="{{ url_for('home.privacy_policy') }}">Política de Privacidade</a></li>
+              <li><a href="{{ url_for('home.terms_use') }}">Termos de Uso</a></li>
+            </ul>
+          </div>
+          <div class="coluna">
+            <ul>
+              <li><a href="{{ url_for('home.help_page') }}">Central de Ajuda</a></li>
+              <li><a href="{{ url_for('home.contact_page') }}">Fale Conosco</a></li>
+            </ul>
+          </div>
+      <p>&copy; 2025 Biblioteca Virtual. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
