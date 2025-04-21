@@ -6,31 +6,11 @@ from data.users import User
 login_bp = Blueprint('login', __name__)
 
 @login_bp.route("/")
-<<<<<<< HEAD
-def login():
-    return render_template("login.html")
-
-@login_bp.route("/register")
-def register():
-    return render_template("register.html")
-
-@login_bp.route("/forgot_password")
-def forgot_password():
-    return render_template("forgot_password.html")
-
-@login_bp.route("/home")
-def home():
-    return render_template("home.html")
-
-@login_bp.route("/login", methods=["GET", "POST"])
-def process_login():
-=======
 def loginpage():
     return render_template("login.html")  
 
 @login_bp.route("/loginvalidate", methods=["POST"])
 def loginvalidate():
->>>>>>> feature/loginbackend
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
