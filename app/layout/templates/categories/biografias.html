@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biografias</title>
+  <link rel="stylesheet" href="../../static/css/estilo.css" />
+</head>
+<body>
+  <header class="topo">
+    <!-- ...existing header code... -->
+  </header>
+  <main class="conteudo-principal">
+    <div class="container">
+      <h1>Biografias</h1>
+      <p>Bem-vindo à página da categoria Biografias. Aqui estão todos os livros deste gênero:</p>
+      {% if books %}
+        <div class="grid-livros">
+          {% for book in books %}
+            <div class="cartao-livro">
+              <a href="{{ url_for('home.book_details', book_id=book.id) }}">
+                <img src="{{ book.cover_url if book.cover_url else url_for('static', filename='img/placeholder.jpg') }}" 
+                     alt="Capa do livro {{ book.title }}" 
+                     class="capa-livro">
+                <div class="titulo-livro">{{ book.title }}</div>
+                <div class="autor-livro"><em>Autor(es):</em> {{ book.authors }}</div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>Nenhum livro encontrado para esta categoria.</p>
+      {% endif %}
+    </div>
+  </main>
+  <footer class="rodape">
+    <!-- ...existing footer code... -->
+  </footer>
+</body>
+</html>

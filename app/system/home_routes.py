@@ -39,6 +39,47 @@ def contact_page():
 def categories():
     return render_template("categories.html")
 
+@home_bp.route("/categories/<string:category_name>")
+@login_required
+def category_page(category_name):
+    BASE_URL = "https://www.googleapis.com/books/v1/volumes"
+    params = {
+        "q": category_name,  # Use the category name as the search query
+        "maxResults": 40,    # Fetch up to 40 results per request (API limit)
+        "startIndex": 0      # Start from the first result
+    }
+
+    books_data = []
+    while True:
+        try:
+            response = requests.get(BASE_URL, params=params)
+            response.raise_for_status()  # Raise an exception for HTTP errors
+
+            data = response.json()
+            books = data.get("items", [])
+
+            if not books:
+                break  # Stop if no more books are returned
+
+            for book in books:
+                title = book["volumeInfo"].get("title", "Título não disponível")
+                authors = book["volumeInfo"].get("authors", ["Autor não disponível"])
+                cover_url = book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None)
+
+                books_data.append({
+                    "title": title,
+                    "authors": ", ".join(authors),
+                    "cover_url": cover_url
+                })
+
+            # Increment the startIndex to fetch the next set of results
+            params["startIndex"] += len(books)
+        except requests.exceptions.RequestException as e:
+            print(f"Erro ao buscar livros para a categoria {category_name}: {e}")
+            abort(500)  # Return a 500 error if the API request fails
+
+    return render_template(f"categories/{category_name}.html", category_name=category_name, books=books_data)
+
 @home_bp.route("/search", methods=["GET", "POST"])
 @login_required
 def search():

@@ -33,14 +33,14 @@
     <div class="container">
       <h1 class="titulo-categorias">Categorias</h1>
       <div class="grid-categorias">
-        <div class="cartao">Ficção</div>
-        <div class="cartao">Romance</div>
-        <div class="cartao">Suspense</div>
-        <div class="cartao">História</div>
-        <div class="cartao">Ciência</div>
-        <div class="cartao">Tecnologia</div>
-        <div class="cartao">Biografias</div>
-        <div class="cartao">Autoajuda</div>
+        <a href="{{ url_for('home.category_page', category_name='ficcao') }}" class="cartao">Ficção</a>
+        <a href="{{ url_for('home.category_page', category_name='romance') }}" class="cartao">Romance</a>
+        <a href="{{ url_for('home.category_page', category_name='suspense') }}" class="cartao">Suspense</a>
+        <a href="{{ url_for('home.category_page', category_name='historia') }}" class="cartao">História</a>
+        <a href="{{ url_for('home.category_page', category_name='ciencia') }}" class="cartao">Ciência</a>
+        <a href="{{ url_for('home.category_page', category_name='tecnologia') }}" class="cartao">Tecnologia</a>
+        <a href="{{ url_for('home.category_page', category_name='biografias') }}" class="cartao">Biografias</a>
+        <a href="{{ url_for('home.category_page', category_name='autoajuda') }}" class="cartao">Autoajuda</a>
       </div>
     </div>
   </main>
