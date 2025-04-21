@@ -406,13 +406,14 @@ body.modo-escuro .book-author {
 }
 .grid-livros {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   margin-top: 20px;
+  padding: 20px;
 }
 
 .cartao-livro {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -420,6 +421,7 @@ body.modo-escuro .book-author {
   transition: transform 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 .cartao-livro:hover {
@@ -431,14 +433,22 @@ body.modo-escuro .book-author {
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
+  margin-bottom: 10px;
+  background-color: #f0f0f0; /* Fallback background color */
 }
 
 .titulo-livro {
-  padding: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #333;
+  margin-bottom: 5px;
 }
+
+.autor-livro {
+  font-size: 0.9rem;
+  color: #555;
+}
+
 @media (max-width: 1024px) {
   .grid-livros {
     grid-template-columns: repeat(3, 1fr);

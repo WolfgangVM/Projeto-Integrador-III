@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, abort
 from flask_login import login_required
 import requests
 
@@ -77,11 +77,14 @@ def search():
                 for book in books:
                     title = book["volumeInfo"].get("title", "Título não disponível")
                     authors = book["volumeInfo"].get("authors", ["Autor não disponível"])
+                    cover_url = book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None)
                     
                     # Adiciona os dados à lista
                     books_data.append({
+                        "id": book.get("id"),
                         "title": title,
-                        "authors": ", ".join(authors)
+                        "authors": ", ".join(authors),
+                        "cover_url": cover_url
                     })
 
                 params["startIndex"] += len(books)
@@ -99,3 +102,30 @@ def search():
         return render_template("search_results.html", query=search_query, books=books_data)
 
     return render_template("search.html")
+
+@home_bp.route("/book/<string:book_id>")
+@login_required
+def book_details(book_id):
+    BASE_URL = f"https://www.googleapis.com/books/v1/volumes/{book_id}"
+    try:
+        response = requests.get(BASE_URL)
+        response.raise_for_status()  # Lança uma exceção para códigos de erro HTTP
+
+        book = response.json()
+        if not book:
+            abort(404)  # Retorna erro 404 se o livro não for encontrado
+
+        # Extrai os detalhes do livro
+        book_data = {
+            "title": book["volumeInfo"].get("title", "Título não disponível"),
+            "authors": ", ".join(book["volumeInfo"].get("authors", ["Autor não disponível"])),
+            "description": book["volumeInfo"].get("description", "Descrição não disponível"),
+            "genre": ", ".join(book["volumeInfo"].get("categories", ["Gênero não disponível"])),
+            "year": book["volumeInfo"].get("publishedDate", "Ano não disponível"),
+            "cover_url": book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None),
+        }
+
+        return render_template("book_details.html", book=book_data)
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao buscar detalhes do livro: {e}")
+        abort(500)  # Retorna erro 500 em caso de falha na comunicação com a API

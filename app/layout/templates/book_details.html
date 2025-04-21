@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Livro</title>
+    <link rel="stylesheet" href="../static/css/estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Livro</h1>
+        <nav>
+            <a href="{{ url_for('home.search') }}">Voltar aos Resultados</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>{{ book.title }}</h2>
+            <img src="{{ book.cover_url if book.cover_url else url_for('static', filename='img/placeholder.jpg') }}" 
+                 alt="Cover of {{ book.title }}" 
+                 class="capa-livro-detalhes">
+            <p><strong>Autor(es):</strong> {{ book.authors }}</p>
+            <p><strong>Descrição:</strong> {{ book.description }}</p>
+            <p><strong>Gênero:</strong> {{ book.genre }}</p>
+            <p><strong>Ano de Publicação:</strong> {{ book.year }}</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Projeto Integrador</p>
+    </footer>
+</body>
+</html>
