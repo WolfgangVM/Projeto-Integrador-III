@@ -6,12 +6,10 @@ from extensions import db, bcrypt
 
 forgot_password_bp = Blueprint('forgot_password', __name__)
 
-# Gerar o token para redefinição de senha
 def generate_reset_token(email):
     serializer = URLSafeTimedSerializer(current_app.secret_key)
     return serializer.dumps(email, salt='password-reset-salt')
 
-# Verificar o token
 def verify_reset_token(token, expiration=3600):
     serializer = URLSafeTimedSerializer(current_app.secret_key)
     try:

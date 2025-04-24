@@ -44,22 +44,22 @@ def categories():
 def category_page(category_name):
     BASE_URL = "https://www.googleapis.com/books/v1/volumes"
     params = {
-        "q": category_name,  # Use the category name as the search query
-        "maxResults": 40,    # Fetch up to 40 results per request (API limit)
-        "startIndex": 0      # Start from the first result
+        "q": category_name,
+        "maxResults": 40,
+        "startIndex": 0
     }
 
     books_data = []
     while True:
         try:
             response = requests.get(BASE_URL, params=params)
-            response.raise_for_status()  # Raise an exception for HTTP errors
+            response.raise_for_status()
 
             data = response.json()
             books = data.get("items", [])
 
             if not books:
-                break  # Stop if no more books are returned
+                break
 
             for book in books:
                 title = book["volumeInfo"].get("title", "Título não disponível")
@@ -72,11 +72,10 @@ def category_page(category_name):
                     "cover_url": cover_url
                 })
 
-            # Increment the startIndex to fetch the next set of results
             params["startIndex"] += len(books)
         except requests.exceptions.RequestException as e:
             print(f"Erro ao buscar livros para a categoria {category_name}: {e}")
-            abort(500)  # Return a 500 error if the API request fails
+            abort(500)
 
     return render_template(f"categories/{category_name}.html", category_name=category_name, books=books_data)
 
@@ -85,27 +84,25 @@ def category_page(category_name):
 def search():
     if request.method == "POST":
         search_query = request.form.get("search-form")
-        print(search_query)  # Debug: imprime a consulta de pesquisa
 
-        # Validação do campo de pesquisa
         if not search_query or not search_query.strip():
             message = "O campo de pesquisa não pode estar vazio."
             return render_template("search.html", message=message)
 
         BASE_URL = "https://www.googleapis.com/books/v1/volumes"
         params = {
-            "q": search_query.strip(),  # Remove espaços em branco desnecessários
+            "q": search_query.strip(),
             "maxResults": 20,
             "startIndex": 0
         }
 
         found_books = False
-        books_data = []  # Lista para armazenar os resultados
+        books_data = []
 
         while True:
             try:
                 response = requests.get(BASE_URL, params=params)
-                response.raise_for_status()  # Lança uma exceção para códigos de erro HTTP
+                response.raise_for_status()
 
                 data = response.json()
                 books = data.get("items", [])
@@ -119,8 +116,7 @@ def search():
                     title = book["volumeInfo"].get("title", "Título não disponível")
                     authors = book["volumeInfo"].get("authors", ["Autor não disponível"])
                     cover_url = book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None)
-                    
-                    # Adiciona os dados à lista
+
                     books_data.append({
                         "id": book.get("id"),
                         "title": title,
@@ -130,7 +126,6 @@ def search():
 
                 params["startIndex"] += len(books)
             except requests.exceptions.RequestException as e:
-                # Loga o erro e exibe uma mensagem ao usuário
                 print(f"Erro ao se comunicar com a API: {e}")
                 message = "Ocorreu um erro ao buscar os livros. Tente novamente mais tarde."
                 return render_template("search_results.html", query=search_query, books=[], message=message)
@@ -139,7 +134,6 @@ def search():
             message = "Nenhum livro foi encontrado para a pesquisa."
             return render_template("search_results.html", query=search_query, books=[], message=message)
 
-        # Renderiza o template com os resultados
         return render_template("search_results.html", query=search_query, books=books_data)
 
     return render_template("search.html")
@@ -150,13 +144,12 @@ def book_details(book_id):
     BASE_URL = f"https://www.googleapis.com/books/v1/volumes/{book_id}"
     try:
         response = requests.get(BASE_URL)
-        response.raise_for_status()  # Lança uma exceção para códigos de erro HTTP
+        response.raise_for_status()
 
         book = response.json()
         if not book:
-            abort(404)  # Retorna erro 404 se o livro não for encontrado
+            abort(404)
 
-        # Extrai os detalhes do livro
         book_data = {
             "title": book["volumeInfo"].get("title", "Título não disponível"),
             "authors": ", ".join(book["volumeInfo"].get("authors", ["Autor não disponível"])),
@@ -169,4 +162,4 @@ def book_details(book_id):
         return render_template("book_details.html", book=book_data)
     except requests.exceptions.RequestException as e:
         print(f"Erro ao buscar detalhes do livro: {e}")
-        abort(500)  # Retorna erro 500 em caso de falha na comunicação com a API
+        abort(500)
