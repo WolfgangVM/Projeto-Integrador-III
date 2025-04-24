@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, abort
 from flask_login import login_required
 import requests
+from deep_translator import GoogleTranslator
+import re  # Biblioteca para limpeza de texto
 
 home_bp = Blueprint('home', __name__)
 
@@ -62,11 +64,13 @@ def category_page(category_name):
                 break
 
             for book in books:
+                book_id = book.get("id", "ID não disponível")
                 title = book["volumeInfo"].get("title", "Título não disponível")
                 authors = book["volumeInfo"].get("authors", ["Autor não disponível"])
                 cover_url = book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None)
 
                 books_data.append({
+                    "id": book_id,
                     "title": title,
                     "authors": ", ".join(authors),
                     "cover_url": cover_url
@@ -114,15 +118,21 @@ def search():
 
                 for book in books:
                     title = book["volumeInfo"].get("title", "Título não disponível")
+                    description = book["volumeInfo"].get("description", "")
+                    categories = book["volumeInfo"].get("categories", [])
                     authors = book["volumeInfo"].get("authors", ["Autor não disponível"])
                     cover_url = book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None)
 
-                    books_data.append({
-                        "id": book.get("id"),
-                        "title": title,
-                        "authors": ", ".join(authors),
-                        "cover_url": cover_url
-                    })
+                    # Filtrar livros que tenham relação com a consulta
+                    if search_query.lower() in title.lower() or \
+                       search_query.lower() in description.lower() or \
+                       any(search_query.lower() in category.lower() for category in categories):
+                        books_data.append({
+                            "id": book.get("id"),
+                            "title": title,
+                            "authors": ", ".join(authors),
+                            "cover_url": cover_url
+                        })
 
                 params["startIndex"] += len(books)
             except requests.exceptions.RequestException as e:
@@ -138,6 +148,16 @@ def search():
 
     return render_template("search.html")
 
+def translate_text(text, target_language="pt"):
+    """
+    Divide o texto em partes menores e traduz cada parte separadamente.
+    """
+    translator = GoogleTranslator(source='auto', target=target_language)
+    max_length = 500  # Limite de caracteres por tradução
+    parts = [text[i:i + max_length] for i in range(0, len(text), max_length)]
+    translated_parts = [translator.translate(part) for part in parts]
+    return " ".join(translated_parts)
+
 @home_bp.route("/book/<string:book_id>")
 @login_required
 def book_details(book_id):
@@ -150,11 +170,22 @@ def book_details(book_id):
         if not book:
             abort(404)
 
+        # Obter e limpar a descrição
+        description = book["volumeInfo"].get("description", "Descrição não disponível")
+        if description != "Descrição não disponível":
+            # Remover caracteres especiais e normalizar o texto
+            description = re.sub(r"[^\w\s.,;!?\"'´`-]", "", description)
+            description = translate_text(description)
+
+        # Traduzir os gêneros para português, se disponíveis
+        genres = book["volumeInfo"].get("categories", ["Gênero não disponível"])
+        translated_genres = [translate_text(genre) for genre in genres]
+
         book_data = {
             "title": book["volumeInfo"].get("title", "Título não disponível"),
             "authors": ", ".join(book["volumeInfo"].get("authors", ["Autor não disponível"])),
-            "description": book["volumeInfo"].get("description", "Descrição não disponível"),
-            "genre": ", ".join(book["volumeInfo"].get("categories", ["Gênero não disponível"])),
+            "description": description,
+            "genre": ", ".join(translated_genres),
             "year": book["volumeInfo"].get("publishedDate", "Ano não disponível"),
             "cover_url": book["volumeInfo"].get("imageLinks", {}).get("thumbnail", None),
         }

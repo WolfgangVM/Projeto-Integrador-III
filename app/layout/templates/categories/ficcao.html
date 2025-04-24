@@ -5,15 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ficção</title>
   <link rel="stylesheet" href="../../static/css/estilo.css" />
+  <style>
+    .destaque-categoria {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../../static/img/background.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .destaque-categoria h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .grid-livros {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .cartao-livro {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cartao-livro:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .capa-livro {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .titulo-livro {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #007BFF;
+      margin-bottom: 5px;
+    }
+    .autor-livro {
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
   <header class="topo">
-    <!-- ...existing header code... -->
+    <div class="container">
+      <img src="../../static/img/logo.png" alt="Logo Biblioteca Virtual" class="logo">
+      <div class="menu-wrapper">
+        <ul class="menu">
+          <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+          <li><a href="{{ url_for('home.categories') }}">Categorias</a></li>
+          <li><a href="estante.html">Minha Estante</a></li>
+          <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
+        </ul>
+      </div>
+      <div class="search-wrapper">
+        <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
+          <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+          <button type="submit" class="search-button">Buscar</button>
+        </form>
+      </div>
+    </div>
   </header>
-  <main class="conteudo-principal">
+  <main class="destaque-categoria">
     <div class="container">
       <h1>Ficção</h1>
-      <p>Bem-vindo à página da categoria Ficção. Aqui estão todos os livros deste gênero:</p>
       {% if books %}
         <div class="grid-livros">
           {% for book in books %}
@@ -34,7 +98,22 @@
     </div>
   </main>
   <footer class="rodape">
-    <!-- ...existing footer code... -->
+    <div class="container rodape-container">
+      <div class="coluna">
+        <ul>
+          <li><a href="{{ url_for('home.about') }}">Sobre a Biblioteca Virtual</a></li>
+          <li><a href="{{ url_for('home.privacy_policy') }}">Política de Privacidade</a></li>
+          <li><a href="{{ url_for('home.terms_use') }}">Termos de Uso</a></li>
+        </ul>
+      </div>
+      <div class="coluna">
+        <ul>
+          <li><a href="{{ url_for('home.help_page') }}">Central de Ajuda</a></li>
+          <li><a href="{{ url_for('home.contact_page') }}">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <p>&copy; 2025 Biblioteca Virtual. Todos os direitos reservados.</p>
+    </div>
   </footer>
 </body>
 </html>

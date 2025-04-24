@@ -5,6 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Categorias</title>
   <link rel="stylesheet" href="../static/css/estilo.css" />
+  <style>
+    .destaque-categorias {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../static/img/background.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .destaque-categorias h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .destaque-categorias p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+    .grid-categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .cartao {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cartao:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
   <header class="topo">
@@ -29,9 +70,10 @@
     </div>
   </header>
 
-  <main class="conteudo-principal">
+  <main class="destaque-categorias">
     <div class="container">
-      <h1 class="titulo-categorias">Categorias</h1>
+      <h1>Categorias</h1>
+      <p>Explore nossas categorias e encontre livros incríveis para ler.</p>
       <div class="grid-categorias">
         <a href="{{ url_for('home.category_page', category_name='ficcao') }}" class="cartao">Ficção</a>
         <a href="{{ url_for('home.category_page', category_name='romance') }}" class="cartao">Romance</a>
@@ -41,6 +83,14 @@
         <a href="{{ url_for('home.category_page', category_name='tecnologia') }}" class="cartao">Tecnologia</a>
         <a href="{{ url_for('home.category_page', category_name='biografias') }}" class="cartao">Biografias</a>
         <a href="{{ url_for('home.category_page', category_name='autoajuda') }}" class="cartao">Autoajuda</a>
+        <a href="{{ url_for('home.category_page', category_name='filosofia') }}" class="cartao">Filosofia</a>
+        <a href="{{ url_for('home.category_page', category_name='arte') }}" class="cartao">Arte</a>
+        <a href="{{ url_for('home.category_page', category_name='negocios') }}" class="cartao">Negócios</a>
+        <a href="{{ url_for('home.category_page', category_name='educacao') }}" class="cartao">Educação</a>
+        <a href="{{ url_for('home.category_page', category_name='saude') }}" class="cartao">Saúde</a>
+        <a href="{{ url_for('home.category_page', category_name='esportes') }}" class="cartao">Esportes</a>
+        <a href="{{ url_for('home.category_page', category_name='viagem') }}" class="cartao">Viagem</a>
+        <a href="{{ url_for('home.category_page', category_name='culinaria') }}" class="cartao">Culinária</a>
       </div>
     </div>
   </main>

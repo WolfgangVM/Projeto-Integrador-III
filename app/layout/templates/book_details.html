@@ -1,32 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Livro</title>
+    <title>{{ book.title }} - Detalhes do Livro</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
+    <style>
+        .destaque-detalhes {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../static/img/background.jpg");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .destaque-detalhes h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .detalhes-container {
+            margin-top: 40px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .capa-livro-detalhes {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .informacoes-livro {
+            flex: 1;
+        }
+        .informacoes-livro p {
+            margin-bottom: 10px;
+        }
+        .botao-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .botao-voltar:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Detalhes do Livro</h1>
-        <nav>
-            <a href="{{ url_for('home.search') }}">Voltar aos Resultados</a>
-        </nav>
+    <header class="topo">
+        <div class="container">
+            <img src="../static/img/logo.png" alt="Logo Biblioteca Virtual" class="logo">
+            <div class="menu-wrapper">
+                <ul class="menu">
+                    <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                    <li><a href="{{ url_for('home.categories') }}">Categorias</a></li>
+                    <li><a href="estante.html">Minha Estante</a></li>
+                    <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
+                </ul>
+            </div>
+            <div class="search-wrapper">
+                <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
+                    <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+                    <button type="submit" class="search-button">Buscar</button>
+                </form>
+            </div>
+        </div>
     </header>
-    <main>
-        <section>
-            <h2>{{ book.title }}</h2>
-            <img src="{{ book.cover_url if book.cover_url else url_for('static', filename='img/placeholder.jpg') }}" 
-                 alt="Cover of {{ book.title }}" 
-                 class="capa-livro-detalhes">
-            <p><strong>Autor(es):</strong> {{ book.authors }}</p>
-            <p><strong>Descrição:</strong> {{ book.description }}</p>
-            <p><strong>Gênero:</strong> {{ book.genre }}</p>
-            <p><strong>Ano de Publicação:</strong> {{ book.year }}</p>
-        </section>
+    <main class="destaque-detalhes">
+        <div class="container">
+            <h1>Detalhes do Livro</h1>
+            <div class="detalhes-container">
+                <img src="{{ book.cover_url if book.cover_url else url_for('static', filename='img/placeholder.jpg') }}" 
+                     alt="Capa do livro {{ book.title }}" 
+                     class="capa-livro-detalhes">
+                <div class="informacoes-livro">
+                    <h2>{{ book.title }}</h2>
+                    <p><strong>Autor(es):</strong> {{ book.authors }}</p>
+                    <p><strong>Descrição:</strong> {{ book.description | safe }}</p>
+                    <p><strong>Gênero:</strong> {{ book.genre }}</p>
+                    <p><strong>Ano de Publicação:</strong> {{ book.year }}</p>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2023 Projeto Integrador</p>
+    <footer class="rodape">
+        <div class="container rodape-container">
+            <div class="coluna">
+                <ul>
+                    <li><a href="{{ url_for('home.about') }}">Sobre a Biblioteca Virtual</a></li>
+                    <li><a href="{{ url_for('home.privacy_policy') }}">Política de Privacidade</a></li>
+                    <li><a href="{{ url_for('home.terms_use') }}">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="coluna">
+                <ul>
+                    <li><a href="{{ url_for('home.help_page') }}">Central de Ajuda</a></li>
+                    <li><a href="{{ url_for('home.contact_page') }}">Fale Conosco</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2025 Biblioteca Virtual. Todos os direitos reservados.</p>
+        </div>
     </footer>
 </body>
 </html>

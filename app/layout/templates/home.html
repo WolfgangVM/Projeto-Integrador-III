@@ -5,6 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Biblioteca Virtual</title>
   <link rel="stylesheet" href="../static/css/estilo.css" />
+  <style>
+    .destaque {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../static/img/background.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .destaque h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .destaque p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+    .botao-destaque {
+      background-color: #007BFF;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .botao-destaque:hover {
+      background-color: #0056b3;
+    }
+    .logout-wrapper {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .logout-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+    .logout-icon {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+    .logout-button:hover .logout-icon {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
   <header class="topo">
@@ -26,12 +77,22 @@
             <button type="submit" class="search-button">Buscar</button>
         </form>
       </div>
+
+      <div class="logout-wrapper">
+        <form action="{{ url_for('login.logout') }}">
+          <button type="submit" class="logout-button">
+            <img src="../static/img/exit.png" alt="Logout" class="logout-icon">
+          </button>
+        </form>
+      </div>
     </div>
   </header>
   
   <main class="destaque">
     <div class="container">
       <h1>Bem-vindo à Biblioteca Virtual</h1>
+      <p>Explore uma vasta coleção de livros e descubra novos mundos.</p>
+      <a href="{{ url_for('home.categories') }}" class="botao-destaque">Explorar Categorias</a>
     </div>
   </main>
   <footer class="rodape">
