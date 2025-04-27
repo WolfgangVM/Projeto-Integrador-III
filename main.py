@@ -25,8 +25,8 @@ app.config['WTF_CSRF_ENABLED'] = True
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'seu_email@gmail.com'
-app.config['MAIL_PASSWORD'] = 'sua_senha'
+app.config['MAIL_USERNAME'] = 'web.book.pi3@gmail.com'
+app.config['MAIL_PASSWORD'] = 'isey lwwx rmlp tnws'
 
 db.init_app(app)
 bcrypt.init_app(app)

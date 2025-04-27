@@ -29,11 +29,11 @@ def forgot_password():
                 reset_url = url_for('forgot_password.reset_password', token=token, _external=True)
                 msg = EmailMessage(
                     subject="Redefinição de Senha",
-                    body=f"Olá, clique no link para redefinir sua senha: {reset_url}",
+                    body=f"Olá, clique no link para redefinir sua senha: {reset_url}\n\nToken: {token}",
                     to=[email],
                 )
                 msg.send()
-                flash('Um link para redefinir sua senha foi enviado para o seu e-mail.', 'info')
+                flash('Um link para redefinir sua senha foi enviado para o seu e-mail, junto com o token.', 'info')
             except Exception as e:
                 print(f"Erro ao enviar e-mail: {e}")
                 flash('Erro ao enviar o e-mail. Tente novamente mais tarde.', 'danger')
@@ -60,5 +60,6 @@ def reset_password(token):
             user.password = bcrypt.generate_password_hash(new_password).decode('utf-8')
             db.session.commit()
             flash('Sua senha foi redefinida com sucesso!', 'success')
-            return redirect(url_for('login.login'))
-    return render_template('RecuperaSenha.html')
+            return redirect(url_for('login.loginpage'))
+    
+    return render_template('RecuperaSenha.html', token=token)
