@@ -53,6 +53,22 @@
       font-size: 1rem;
       color: #555;
     }
+    .paginacao {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .botao-paginacao {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin: 0 5px;
+      transition: background-color 0.3s ease;
+    }
+    .botao-paginacao:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -91,6 +107,15 @@
               </a>
             </div>
           {% endfor %}
+        </div>
+        <div class="paginacao">
+          {% if current_page > 1 %}
+            <a href="{{ url_for('home.category_page', category_name=category_name, page=current_page - 1) }}" class="botao-paginacao">Anterior</a>
+          {% endif %}
+          <span>Página {{ current_page }} de {{ total_pages }}</span>
+          {% if current_page < total_pages %}
+            <a href="{{ url_for('home.category_page', category_name=category_name, page=current_page + 1) }}" class="botao-paginacao">Próxima</a>
+          {% endif %}
         </div>
       {% else %}
         <p>Nenhum livro encontrado para esta categoria.</p>
