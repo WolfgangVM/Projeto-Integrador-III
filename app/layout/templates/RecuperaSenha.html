@@ -26,5 +26,20 @@
       </div>
     </div>
   </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category|e }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+  <script src="../static/js/script.js" defer></script>
+
+  
 </body>
 </html>

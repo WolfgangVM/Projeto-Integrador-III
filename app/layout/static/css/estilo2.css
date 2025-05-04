@@ -152,3 +152,32 @@
       height: auto;
     }
      
+
+
+    .flash-messages {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      width: 300px;
+    }
+    
+    .alert {
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .alert-info {
+      background-color: #007BFF;
+    }
+    
+    .alert-success {
+      background-color: #28a745;
+    }
+    
+    .alert-danger {
+      background-color: #dc3545;
+    }
