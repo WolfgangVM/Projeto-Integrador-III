@@ -3,35 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biblioteca Virtual</title>
+  <title>Perfil do Usuário</title>
   <link rel="stylesheet" href="../static/css/estilo.css" />
   <style>
-    .destaque {
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .profile-header {
       background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../static/img/background.jpg");
       background-size: cover;
       background-position: center;
       color: white;
-      padding: 100px 20px;
+      padding: 50px 20px;
       text-align: center;
     }
-    .destaque h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+    .profile-header .profile-picture {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      object-fit: cover;
+      border: 3px solid #007BFF;
     }
-    .destaque p {
-      font-size: 1.5rem;
-      margin-bottom: 30px;
+    .profile-header .profile-details {
+      font-size: 1.2rem;
+      color: white;
     }
-    .botao-destaque {
+    .profile-header .profile-details p {
+      margin: 5px 0;
+    }
+    .edit-profile-button {
       background-color: #007BFF;
       color: white;
-      padding: 15px 30px;
+      padding: 10px 20px;
       text-decoration: none;
       border-radius: 8px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition: background-color 0.3s ease;
+      display: inline-block;
+      margin-top: 15px;
     }
-    .botao-destaque:hover {
+    .edit-profile-button:hover {
       background-color: #0056b3;
     }
     .logout-wrapper {
@@ -55,29 +70,29 @@
     .logout-button:hover .logout-icon {
       transform: scale(1.1);
     }
+    footer {
+      margin-top: auto;
+    }
   </style>
 </head>
 <body>
   <header class="topo">
     <div class="container">
       <img src="../static/img/logo.png" alt="Logo Biblioteca Virtual" class="logo">
-      
       <div class="menu-wrapper">
         <ul class="menu">
           <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
           <li><a href="{{ url_for('home.categories') }}">Categorias</a></li>
-            <li><a href="{{ url_for('home.shelf') }}">Minha Estante</a></li>
+          <li><a href="{{ url_for('home.shelf') }}">Minha Estante</a></li>
           <li><a href="{{ url_for('home.help_page') }}">Ajuda</a></li>
         </ul>
       </div>
-  
       <div class="search-wrapper">
         <form class="search-form" method="POST" action="{{ url_for('home.search') }}">
-            <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
-            <button type="submit" class="search-button">Buscar</button>
+          <input type="text" name="search-form" placeholder="Buscar livro" class="search-input">
+          <button type="submit" class="search-button">Buscar</button>
         </form>
       </div>
-
       <div class="logout-wrapper">
         <a href="{{ url_for('home.profile') }}" class="logout-button">
           <img src="../static/img/usuario.svg" alt="Usuário" class="user-icon" style="width: 24px; height: 24px; margin-right: 10px;">
@@ -90,12 +105,15 @@
       </div>
     </div>
   </header>
-  
-  <main class="destaque">
+  <main class="profile-header">
     <div class="container">
-      <h1>Bem-vindo à Biblioteca Virtual</h1>
-      <p>Explore uma vasta coleção de livros e descubra novos mundos.</p>
-      <a href="{{ url_for('home.categories') }}" class="botao-destaque">Explorar Categorias</a>
+      <img src="../static/img/default-profile.png" alt="Foto de Perfil" class="profile-picture">
+      <div class="profile-details">
+        <p><strong>Nome:</strong> {{ current_user.name }}</p>
+        <p><strong>Email:</strong> {{ current_user.email }}</p>
+        <p><strong>Data de Registro:</strong> {{ current_user.date_joined }}</p>
+      </div>
+      <a href="{{ url_for('home.edit_profile') }}" class="edit-profile-button">Editar Perfil</a>
     </div>
   </main>
   <footer class="rodape">

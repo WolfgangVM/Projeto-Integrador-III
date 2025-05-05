@@ -275,3 +275,26 @@ def shelf():
     books = user_shelf.get(current_user.id, [])
     return render_template("shelf.html", books=books)
 
+@home_bp.route("/profile")
+@login_required
+def profile():
+    return render_template("profile.html")
+
+@home_bp.route("/edit-profile")
+@login_required
+def edit_profile():
+    return render_template("edit_profile.html")
+
+@home_bp.route("/update-profile", methods=["POST"])
+@login_required
+def update_profile():
+    name = request.form.get("name")
+    email = request.form.get("email")
+
+    # Update the user's profile (this is just a placeholder; replace with actual logic)
+    current_user.name = name
+    current_user.email = email
+    flash("Perfil atualizado com sucesso!")
+    
+    return redirect(url_for("home.profile"))
+
