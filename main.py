@@ -26,7 +26,7 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'web.book.pi3@gmail.com'
-app.config['MAIL_PASSWORD'] = 'isey lwwx rmlp tnws'
+app.config['MAIL_PASSWORD'] = 'pksh bxqo pxjp yzxs'
 
 db.init_app(app)
 bcrypt.init_app(app)

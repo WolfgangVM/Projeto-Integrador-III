@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-setTimeout(() => {
-    const flashMessages = document.querySelector('.flash-messages');
-    if (flashMessages) {
-        flashMessages.style.display = 'none';
-    }
-}, 5000);
+// setTimeout(() => {
+// const flashMessages = document.querySelector('.flash-messages');
+// if (flashMessages) {
+//     flashMessages.style.display = 'none';
+// }
+// }, 5000);
